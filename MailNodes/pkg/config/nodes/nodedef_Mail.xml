@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<nodedefs>
+<nodedef name="GetMailService" class="vdab.extnodes.mail.GetMailService">
+	<attr name="Group">Mail</attr>
+	<attr name="ConsumedEventTypes">Trigger</attr>
+    <attr name="PublishedEventTypes">Event</attr>
+    <attr name="NodeOverview">Reads a POP3 email account returning new emails.</attr>   
+    <attr name="NodeDescTemplate">read ${User}</attr>
+	<attr name="NodeQuality" >Beta</attr>     
+	<datadef name="User">
+		<attr name="EditOrder" type="Integer">1</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">An user email account</attr>				
+	</datadef>
+    <datadef  name="Password">
+		<attr name="EditOrder" type="Integer">2</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The user email account password. Saved passwords will be obfuscated.</attr>		
+	</datadef>
+	<datadef name="POP3Server">
+		<attr name="EditOrder" type="Integer">11</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The POP3 Server name.</attr>					
+	</datadef>
+	<datadef name="POP3Port">
+		<attr name="EditOrder" type="Integer">12</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The POP3 Server port.</attr>						
+	</datadef>
+</nodedef>
+<nodedef name="MailService" class="vdab.extnodes.mail.MailService">
+	<attr name="Group">Mail</attr>
+	<attr name="ConsumedEventTypes">String,Event,Number,Trigger</attr>
+    <attr name="PublishedEventTypes">Event,Trigger,Boolean</attr>
+    <attr name="NodeOverview">Writes an email to selected recipients. The body and subject can templates and include event data.</attr>   
+    <attr name="NodeDescTemplate">to ${Recipient}</attr>
+	<attr name="NodeQuality" >Beta</attr>     
+	<datadef name="User">
+		<attr name="EditOrder" type="Integer">1</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">An user email account</attr>				
+	</datadef>
+    <datadef  name="Password">
+		<attr name="EditOrder" type="Integer">2</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The user email account password. Saved passwords will be obfuscated.</attr>		
+	</datadef>
+	<datadef name="SMTPHost">
+		<attr name="EditOrder" type="Integer">11</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The SMTP Server name.</attr>					
+	</datadef>
+	<datadef name="SMTPPort">
+		<attr name="EditOrder" type="Integer">12</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The SMTP Server port.</attr>						
+	</datadef>
+	<datadef name="Subject">
+		<attr name="EditOrder" type="Integer">21</attr>
+		<attr name="Category">Standard</attr>
+		<attr name="Desc">The subject of the email which can use a template.</attr>		
+	</datadef>
+	<datadef name="Recipient">
+		<attr name="EditOrder" type="Integer">22</attr>
+		<attr name="Category">Required</attr>
+		<attr name="Desc">The recipient for the email.</attr>		
+	</datadef>
+	<datadef name="Body">
+		<attr name="EditOrder" type="Integer">23</attr>
+		<attr name="Category">Standard</attr>
+		<attr name="Desc">The body of the email which can use a template</attr>		
+	</datadef>
+	<datadef name="DeliveryReceipt">
+		<attr name="EditOrder" type="Integer">24</attr>
+		<attr name="Category">Standard</attr>
+	</datadef>
+	<datadef name="AddAttachment">
+		<attr name="Category">Standard</attr>
+		<attr name="EditOrder" type="Integer">31</attr>
+		<attr name="RefreshOnChange" type="Boolean">true</attr>
+		<attr name="Desc">Selected to allow a single file attachment.</attr>		
+	</datadef>
+	<datadef name="Directory">
+		<attr name="Category">Standard</attr>
+		<attr name="EditOrder" type="Integer">32</attr>
+		<attr name="RefreshOnChange" type="Boolean">true</attr>
+		<attr name="Desc">The directory of the file attachment.</attr>		
+	</datadef>
+	<datadef name="Filename">
+		<attr name="Category">Standard</attr>
+		<attr name="EditOrder" type="Integer">33</attr>
+		<attr name="Desc">The filename of the file attachment.</attr>		
+	</datadef>
+</nodedef>
+<nodedef name="TextTarget" class="vdab.extnodes.mail.TextTarget">
+	<attr name="Group">Mail</attr>
+	<attr name="ConsumedEventTypes">String,Event,Number,Trigger</attr>
+    <attr name="PublishedEventTypes">NONE</attr>
+    <attr name="NodeDescTemplate">to ${PhoneNumber}</attr>
+	<datadef name="Recipient">
+		<attr name="Category">Technical</attr>
+	</datadef>
+	<datadef name="Subject">
+		<attr name="Category">Technical</attr>
+	</datadef>
+	<datadef name="Body">
+		<attr name="Category">Standard</attr>
+	</datadef>
+	<datadef name="PhoneNumber">
+		<attr name="Category">Required</attr>
+		<attr name="MaxChars" type="Integer">10</attr>
+	</datadef>
+</nodedef>
+</nodedefs>
