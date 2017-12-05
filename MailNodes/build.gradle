@@ -23,6 +23,7 @@ task vdabPackage(dependsOn: [build]){
 			from 'libs'
 			from 'build/libs'
 			into 'pkg/ext'
+			exclude 'VDABCore.jar'
 		}
 		ant.zip(destfile: 'PKG_MailNodes.zip'){
 			fileset (dir: 'pkg')
