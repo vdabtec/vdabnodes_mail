@@ -1,4 +1,5 @@
 .gradle
+.svn
 build
 VDABCore.jar
 PKG*

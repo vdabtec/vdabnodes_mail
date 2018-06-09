@@ -19,7 +19,7 @@ public class MailService extends AnalysisServiceUsingHandler{
 	private Integer c_Port = Integer.valueOf(587);
 	private String c_Recipient ;
 	private String c_Subject ;
-	private String c_Body ;
+	private String c_Body;
 	private Boolean c_DeliveryReceipt = Boolean.FALSE;
 	private Boolean c_AddAttachment = Boolean.FALSE; 	
 	private String c_Filename ;
