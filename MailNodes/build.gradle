@@ -48,5 +48,6 @@ task vdabPackage(dependsOn: [build]){
 		ant.zip(destfile: 'PKG_MailNodes.zip'){
 			fileset (dir: 'pkg')
 		}
+		delete "libs/VDABCore.jar"
 	}
 }
