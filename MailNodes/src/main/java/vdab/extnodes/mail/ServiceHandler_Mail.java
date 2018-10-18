@@ -1,3 +1,18 @@
+/*LICENSE*
+ * Copyright (C) 2013 - 2018 MJA Technology LLC 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
 package vdab.extnodes.mail;
 
 import java.util.ArrayList;
@@ -22,6 +37,7 @@ import javax.mail.internet.MimeMultipart;
 
 import com.lcrc.af.AnalysisData;
 import com.lcrc.af.AnalysisEvent;
+import com.lcrc.af.AnalysisObject;
 import com.lcrc.af.datatypes.AFFile;
 import com.lcrc.af.service.AnalysisServiceUsingHandler;
 import com.lcrc.af.servicehandlers.ServiceHandler_A;
@@ -52,12 +68,10 @@ public class ServiceHandler_Mail extends ServiceHandler_A {
 		
 		c_User = an.get_User();
 		c_Password= an.get_Password();
-
 		c_Host = an.get_SMTPHost() ;
 		c_Port = an.get_SMTPPort() ;
 		c_Recipient = an.get_Recipient() ;
-		c_Subject = an.get_Subject();
-		c_Body = an.get_Body();
+
 		ArrayList<AFFile> attachmentList = new ArrayList<AFFile>();
 		
 		if (! ev.isTriggerEvent()){	
@@ -65,13 +79,9 @@ public class ServiceHandler_Mail extends ServiceHandler_A {
 			HashMap<String,String> tvMap = AnalysisDataUtility.buildTagValueMap(ev.getAnalysisData());
 			
 			// Build body with tags if necessary
-			if (c_Body != null){
-				if (StringUtility.hasTags(c_Body))
-					c_Body = StringUtility.buildFromTemplate(c_Body, tvMap);		
-			}		
-			else { // If Body not specified send the entire event
+			c_Body = an.getTemplateAttribute( "Body", tvMap);
+			if (c_Body == null)
 				c_Body = ev.getStringData();
-			}
 			
 			//Find All File Attachments
 			if (an.get_AddAttachment().booleanValue()){
@@ -85,9 +95,7 @@ public class ServiceHandler_Mail extends ServiceHandler_A {
 				}
 			}
 			
-		
-			if (c_Subject != null && StringUtility.hasTags(c_Subject))
-				c_Subject = StringUtility.buildFromTemplate(c_Subject, tvMap);
+			c_Subject = an.getTemplateAttribute( "Subject", tvMap);
 							
 		}
 		if (c_Body != null){
@@ -127,7 +135,7 @@ public class ServiceHandler_Mail extends ServiceHandler_A {
 				Transport.send(message);
 				an.serviceCompleted(ev);
 			} 
-			catch (MessagingException e) {
+			catch (Exception e) {
 				setErrorOnNode("Send mail failed e>"+e);
 				an.serviceFailed(ev, 1);
 			}

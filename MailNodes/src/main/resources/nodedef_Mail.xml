@@ -8,21 +8,22 @@
     <attr name="NodeDescTemplate">read ${User}</attr>
 	<attr name="NodeQuality" >Beta</attr>     
 	<datadef name="User">
-		<attr name="EditOrder" type="Integer">1</attr>
+		<attr name="EditOrder" type="Integer">2</attr>
 		<attr name="Category">Required</attr>
 		<attr name="Desc">An user email account</attr>				
 	</datadef>
     <datadef  name="Password">
-		<attr name="EditOrder" type="Integer">2</attr>
+		<attr name="EditOrder" type="Integer">3</attr>
 		<attr name="Category">Required</attr>
+		<attr name="SpecialType">Password</attr>
 		<attr name="Desc">The user email account password. Saved passwords will be obfuscated.</attr>		
 	</datadef>
 	<datadef  name="MarkRead">
-		<attr name="EditOrder" type="Boolean">3</attr>
+		<attr name="EditOrder" type="Boolean">4</attr>
 		<attr name="Category">Standard</attr>		
 	</datadef>
 	<datadef  name="RemoveFromInbox">
-		<attr name="EditOrder" type="Boolean">4</attr>
+		<attr name="EditOrder" type="Boolean">5</attr>
 		<attr name="Category">Standard</attr>		
 	</datadef>
 	<datadef name="Server">
@@ -37,7 +38,7 @@
 	</datadef>
 	<datadef name="ServerType">
 		<attr name="RefreshOnChange" type="Boolean">true</attr>
-		<attr name="EditOrder" type="Integer">3</attr>
+		<attr name="EditOrder" type="Integer">1</attr>
 		<attr name="Category">Required</attr>
 		<attr name="Enum">MailServerType</attr>						
 	</datadef>
@@ -57,6 +58,7 @@
     <datadef  name="Password">
 		<attr name="EditOrder" type="Integer">2</attr>
 		<attr name="Category">Required</attr>
+		<attr name="SpecialType">Password</attr>
 		<attr name="Desc">The user email account password. Saved passwords will be obfuscated.</attr>		
 	</datadef>
 	<datadef name="SMTPHost">
@@ -72,6 +74,7 @@
 	<datadef name="Subject">
 		<attr name="EditOrder" type="Integer">21</attr>
 		<attr name="Category">Standard</attr>
+		<attr name="SpecialType">Template</attr>
 		<attr name="Desc">The subject of the email which can use a template.</attr>		
 	</datadef>
 	<datadef name="Recipient">
@@ -82,6 +85,7 @@
 	<datadef name="Body">
 		<attr name="EditOrder" type="Integer">23</attr>
 		<attr name="Category">Standard</attr>
+		<attr name="SpecialType">Template</attr>
 		<attr name="Desc">The body of the email which can use a template</attr>		
 	</datadef>
 	<datadef name="DeliveryReceipt">
@@ -142,6 +146,7 @@
 		<attr name="EditWhileRunning" type="Boolean">true</attr>
 		<attr name="EditOrder" type="Integer">14</attr>
 		<attr name="Category">Standard</attr>
+		<attr name="SpecialType">Template</attr>
 	</datadef>
 	<datadef name="PhoneNumber">
 		<attr name="EditWhileRunning" type="Boolean">true</attr>
