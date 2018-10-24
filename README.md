@@ -1,4 +1,4 @@
-# VdAB Mail Nodes
+# VDAB Mail Nodes
 ### Overview
 This repository includes the source and libraries associated with the different mail nodes 
 including nodes to read email, write mail and to send text using email.
